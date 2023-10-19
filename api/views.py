@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-
+from rest_framework import status
 from api.models import Client, ProblemsHealth
-from .serializers import ClientSerializer, ClientSerializerOrder
+from .serializers import ClientSerializer, ClientSerializerOrder, ClientSerializerUpdate
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.exceptions import APIException
 import logging
@@ -40,4 +40,13 @@ def order(request):
     serializer = ClientSerializerOrder(client, many=True)
     return Response(serializer.data)
 
-
+@swagger_auto_schema(method='put', request_body=ClientSerializerUpdate)
+@api_view(['PUT'])
+def client_edit(request, pk):
+    client = Client.objects.get(id=pk)
+    
+    serializer = ClientSerializerUpdate(client, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

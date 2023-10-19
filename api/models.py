@@ -13,7 +13,7 @@ class Client(models.Model):
     birthday = models.DateField()
     sex = models.CharField(max_length=1)
     problem_health = models.ManyToManyField('ProblemsHealth', related_name='problem')
-    date_create = models.DateTimeField(default=timezone.now)
+    date_create = models.DateTimeField()
     data_update = models.DateTimeField(default=timezone.now)
 
 
