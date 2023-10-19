@@ -50,3 +50,10 @@ def client_edit(request, pk):
         serializer.save()
         return Response(serializer.data)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def get_client_id(request, pk):
+    client = Client.objects.get(id=pk)
+    serializer = ClientSerializerOrder(client)
+
+    return Response(serializer.data)
