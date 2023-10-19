@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .serializers import ClientSerializer
+
+from api.models import Client, ProblemsHealth
+from .serializers import ClientSerializer, ClientSerializerOrder
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.exceptions import APIException
 import logging
@@ -30,3 +32,12 @@ def criar(request):
     else:
         logger.error('Dados inválidos: %s', serializer.errors)
         return JsonResponse(serializer.errors, status=400)  
+
+
+@api_view(['GET'])
+def order(request):
+    client = Client.objects.all()
+    serializer = ClientSerializerOrder(client, many=True)
+    return Response(serializer.data)
+
+

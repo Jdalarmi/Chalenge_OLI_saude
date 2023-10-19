@@ -4,7 +4,7 @@ from api.models import ProblemsHealth, Client
 class ProblemHealthSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProblemsHealth
-        fields = '__all__'
+        fields = ('name_problem', 'rating')
 
 class ClientSerializer(serializers.ModelSerializer):
     problem_health = ProblemHealthSerializer(many=True)  
@@ -22,6 +22,13 @@ class ClientSerializer(serializers.ModelSerializer):
             client.problem_health.add(problem)
 
         return client
+
+class ClientSerializerOrder(serializers.ModelSerializer):
+    problem_health = ProblemHealthSerializer(many=True)
+
+    class Meta:
+        model = Client
+        fields = '__all__'
 
 
 
