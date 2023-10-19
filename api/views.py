@@ -19,7 +19,7 @@ def criar(request):
     """
     if request.method != 'POST':
         logger.error('Método não permitido. Apenas requisições POST são aceitas.')
-        return JsonResponse({'error': 'Método não permitido'}, status=405)  # Método não permitido (405)
+        return JsonResponse({'error': 'Método não permitido'}, status=405) 
 
     logger.debug('Requisição POST recebida com dados: %s', request.data)
     
