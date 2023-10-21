@@ -11,7 +11,12 @@ class ProblemsHealth(models.Model):
 class Client(models.Model):
     name = models.CharField(max_length=50)
     birthday = models.DateField()
-    sex = models.CharField(max_length=1)
+    sex_choices = (
+        ('M','Masculino'),
+        ('F','Feminino'),
+        ('O','Outro')
+    )
+    sex = models.CharField(max_length=1, choices=sex_choices)
     problem_health = models.ManyToManyField('ProblemsHealth', related_name='problem')
     date_create = models.DateTimeField()
     data_update = models.DateTimeField(default=timezone.now)
