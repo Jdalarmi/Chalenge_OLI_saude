@@ -20,11 +20,6 @@ Esse calculo é baseado em um atributo cujo é o grau da gravidade do problema d
 
 - **Boas Práticas de Programação**: Segui boas práticas de programação, incluindo a nomenclatura em inglês, para tornar o código claro e legível.
 
-## Como Usar
-
-Para usar este projeto, siga as instruções detalhadas:
-Este projeto é auto explicativo e documentado com swagger para usar acesse o link da API:
-[https://jefinhojz.pythonanywhere.com/swagger/]
 
 ## Avaliação
 
